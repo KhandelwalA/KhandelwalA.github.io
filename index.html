@@ -1,1 +1,22 @@
-Hello Friends
+Its natural that everything that evolves also gets refined over the period of time, weather its nature, product or any processes. Same is the case with the microservice architectural style, when microservices starts evolving focus was to make them full of capabilities in which its predecessors lacks and as a result our business services starts owning the responsibilities which were actually not their responsibilities but should be there for this architectural style, like, 
+
+1. Service discovery client
+2. Load balancing
+3. Multi protocol support for communication
+4. Fault Taulrence (Circuit breaker, Rate limiting(Controlling incoming & outgoing traffic), Auto retries)
+5. Scaling of services
+6. Telemetrics
+7. Distributed tracing of a request across multiple services
+8. Security(mTLS, policies)
+
+This had its own drawbacks, like, business service single responsiblity is to perform the business logic but now service was doing more than that, it is also owning the operations. Also, the same operation capabilities were copied across the services which means if a change is required then it should be done in all the services. Moreover, in a case of polyglot services there wrere different libraries for different languages which were again hard to maintain in the technology stack.
+
+To overcome all these issues, a new microservice pattern comes into the picture known as sidecar pattern or a service mesh. In this pattern, with each service there is an another lightweight programme gets associated known as sidecar or data plane which performs all these responsibilites for the service. These sidecars or dataplane are controlled by another single programme called as Control plane. These data plane and control plane talk to each other and share the information like, control plane sends all the required configurations to all the side cars or data planes. Similaly, these data plane sends the metrics of their respective service to the control plane which is used for the monitoring and reporting purpose.
+
+There are many frameworks available in the market to implement the service mesh pattern, some of them are listed below.
+1. Istio (Control plane) + Envoy(Sidecar or dataplane)
+2. Linkerd (Data plane)
+3. nginx(data plane)
+4. Conduit(Control plane)
+5. Kubernetes (Uses Envoy, Istio)
+6. Service Mesh Hub (Wrapper to multiple service mesh)
